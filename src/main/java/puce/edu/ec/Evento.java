@@ -14,8 +14,13 @@ public class Evento {
     }
 
     public boolean registrarAsistente(String nombre, int edad) {
+        if (nombre == null || nombre.trim().isEmpty()) {
+            System.out.println(" Error: El nombre no puede estar vacío.");
+            return false;
+        }
+
         if (edad < 18) {
-            System.out.println(" Error: " + nombre + " es menor de edad (" + edad + " años). Ingreso denegado.");
+            System.out.println(" Error: " + nombre + " es menor de edad. Ingreso denegado.");
             return false;
         }
 
@@ -43,6 +48,7 @@ public class Evento {
             System.out.println(" - " + asistentes[i].getNombre() + " (" + asistentes[i].getEdad() + " años)");
         }
         System.out.println("Total de asistentes: " + contadorAsistentes + "/" + asistentes.length);
+        System.out.println("Cupos disponibles: " + (asistentes.length - contadorAsistentes));
         System.out.println("Monto total recaudado: $" + calcularTotalRecaudado());
         System.out.println("==========================================\n");
     }
